@@ -27,11 +27,13 @@ urlpatterns = [
 ]
 
 
-# urlpatterns = [
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')),
     # url(r'^admin/', admin.site.urls),
     # path('', include('blog.urls')),
 
     # Examples:
     # url(r'^$', 'myproject.views.home', name = 'home'),
     # url(r'^blog/', include('blog.urls')),
-# ]
+]

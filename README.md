@@ -1,2 +1,1 @@
-# Fusion - Server
-
+# Niji / Fusion / Server

@@ -2,10 +2,12 @@ import pymongo
 
 from pymongo import MongoClient
 
+#tested
 def connect_to_mongo(connection_string):
     # Connect to a mongo client using the given connection string
     return MongoClient(connection_string)
 
+#tested
 def search_for_user(course_name, email):
     query_result = client["SDM"][course_name].aggregate([{'$match': { 'email': email } } ]) #returns a cursor
 
@@ -19,6 +21,7 @@ def search_for_user(course_name, email):
     user = query_result.next() #returns the document selected by the cursor
     return user
 
+#tested
 def update_user_info(field_to_change, new_info):
     update_result = collection.update_one(
         {'email' : user['email'] },

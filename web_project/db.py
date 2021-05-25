@@ -90,7 +90,7 @@ def delete_project(project_name):
                 }
             } 
         })
-        
+
     return deletion_result
 
 client = connect_to_mongo('mongodb+srv://MongoBongo:BongoBongo@djongoconnectiontest.nlqyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')

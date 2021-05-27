@@ -10,4 +10,5 @@ user_details = {
 def test_user_search():
     user = search_for_user(user_details['course_name'] ,user_details['email'])
     print(user)
-    assert user['email'] == user_details['email'], 'User not found, did you check the database?'
+    assert user['email'] == user_details['email'], \
+           'User not found, did you check the database?'

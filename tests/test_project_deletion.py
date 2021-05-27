@@ -14,8 +14,7 @@ project_details = {
 }
 
 def test_project_deletion():
-    search_for_user(user_details['course_name'] ,user_details['email'])
+    search_for_user(user_details['course_name'], user_details['email'])
     insertion_result = delete_project(project_details['name'])
-
     assert insertion_result.acknowledged is True
     assert insertion_result.modified_count == 1, 'Project did not get deleted'

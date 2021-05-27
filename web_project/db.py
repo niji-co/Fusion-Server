@@ -21,7 +21,7 @@ def search_for_user(course_name, email):
     return user
 
 def update_user_info(field_to_change, new_info):
-    update_result = collection.update_one(
+    return collection.update_one(
         {
             'email': user['email']
         },
@@ -31,13 +31,11 @@ def update_user_info(field_to_change, new_info):
             }
         },
         False)
-    return update_result
 
 # Note: If the field we are updating is not in the document, it will insert the new field for us.
 def update_project_info(project_name, field_to_change, new_info):
     project_subfield_to_change = 'projects.$.' + field_to_change
-
-    update_result = collection.update_one(
+    return collection.update_one(
         {
             'email': user['email'],
             'projects.name': project_name,
@@ -47,10 +45,9 @@ def update_project_info(project_name, field_to_change, new_info):
                 project_subfield_to_change : new_info
             }
         })
-    return update_result
 
 def insert_new_project(project_name):
-    insert_result = collection.update_one(
+    return collection.update_one(
         {
             'email': user['email']
         },
@@ -61,10 +58,9 @@ def insert_new_project(project_name):
                 }
             }
         })
-    return insert_result
 
 def delete_project(project_name):
-    deletion_result = collection.update_one(
+    return collection.update_one(
         {
             'email': user['email']
         },
@@ -75,7 +71,6 @@ def delete_project(project_name):
                 }
             }
         })
-    return deletion_result
 
 client = connect_to_mongo('mongodb+srv://MongoBongo:BongoBongo@djongoconnectiontest.nlqyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 collection = None

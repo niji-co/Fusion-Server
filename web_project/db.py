@@ -24,7 +24,7 @@ def update_user_info(field_to_change, new_info):
         },
         {
             '$set': {
-                field_to_change : new_info
+                field_to_change: new_info
             }
         },
         False)
@@ -40,7 +40,7 @@ def update_project_info(project_name, field_to_change, new_info):
         },
         {
             '$set': {
-                project_subfield_to_change : new_info
+                project_subfield_to_change: new_info
             }
         })
 

@@ -1,11 +1,10 @@
 import pymongo
 
-# import your functions/classes here
 from web_project.db import search_for_user
 
 user_details = {
     'course_name': 'GDT',
-    'email': 'ryantanzr.work@gmail.com'    
+    'email': 'ryantanzr.work@gmail.com'
 }
 
 def test_user_search():

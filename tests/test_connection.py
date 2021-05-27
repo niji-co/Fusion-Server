@@ -1,8 +1,7 @@
 import pymongo
 
-# import your functions/classes here
-from web_project.db import connect_to_mongo
 from pymongo import MongoClient
+from web_project.db import connect_to_mongo
 
 # connection test via document find of a sample database/collection
 def test_connection():

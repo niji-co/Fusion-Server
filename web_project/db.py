@@ -19,14 +19,8 @@ def search_for_user(course_name, email):
 
 def update_user_info(field_to_change, new_info):
     return collection.update_one(
-        {
-            'email': user['email']
-        },
-        {
-            '$set': {
-                field_to_change: new_info
-            }
-        },
+        {'email': user['email']},
+        {'$set': {field_to_change: new_info}},
         False)
 
 # Note: If the field we are updating is not in the document, it will insert
@@ -38,37 +32,17 @@ def update_project_info(project_name, field_to_change, new_info):
             'email': user['email'],
             'projects.name': project_name,
         },
-        {
-            '$set': {
-                project_subfield_to_change: new_info
-            }
-        })
+        {'$set': {project_subfield_to_change: new_info}})
 
 def insert_new_project(project_name):
     return collection.update_one(
-        {
-            'email': user['email']
-        },
-        {
-            '$push': {
-                'projects': {
-                    'name': project_name
-                }
-            }
-        })
+        {'email': user['email']},
+        {'$push': {'projects': {'name': project_name}}})
 
 def delete_project(project_name):
     return collection.update_one(
-        {
-            'email': user['email']
-        },
-        {
-            '$pull': {
-                'projects': {
-                    'name': project_name
-                }
-            }
-        })
+        {'email': user['email']},
+        {'$pull': {'projects': {'name': project_name}}})
 
 client = connect_to_mongo('mongodb+srv://MongoBongo:BongoBongo@djongoconnectiontest.nlqyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 collection = None

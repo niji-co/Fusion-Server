@@ -7,16 +7,16 @@ def connect_to_mongo(connection_string):
     return MongoClient(connection_string)
 
 def search_for_user(course_name, email):
-    query_result = client['SDM'][course_name].aggregate([{'$match': { 'email': email } } ]) #returns a cursor
+    query_result = client['SDM'][course_name].aggregate([{'$match': { 'email': email } } ]) # returns a cursor
 
-    assert query_result is not None #throw an exception if the query fails
+    assert query_result is not None # throw an exception if the query fails
 
-    #assigning global variables
+    # assigning global variables
     global collection
     collection = client['SDM'][course_name]
 
     global user
-    user = query_result.next() #returns the document selected by the cursor
+    user = query_result.next() # returns the document selected by the cursor
 
     return user
 
@@ -33,7 +33,7 @@ def update_user_info(field_to_change, new_info):
         False)
     return update_result
 
-#Note: If the field we are updating is not in the document, it will insert the new field for us.
+# Note: If the field we are updating is not in the document, it will insert the new field for us.
 def update_project_info(project_name, field_to_change, new_info):
     project_subfield_to_change = 'projects.$.' + field_to_change
 

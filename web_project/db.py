@@ -14,7 +14,7 @@ def search_for_user(course_name, email):
     assert query_result is not None #throw an exception if the query fails
 
     #assigning global variables
-    global collection 
+    global collection
     collection = client['SDM'][course_name]
 
     global user
@@ -26,12 +26,12 @@ def update_user_info(field_to_change, new_info):
 
     update_result = collection.update_one(
         {
-            'email' : user['email'] 
+            'email' : user['email']
         },
         {
-            '$set' : 
+            '$set' :
             {
-                field_to_change : new_info 
+                field_to_change : new_info
             }
         },
         False)
@@ -42,35 +42,35 @@ def update_user_info(field_to_change, new_info):
 def update_project_info(project_name, field_to_change, new_info):
 
     project_subfield_to_change = 'projects.$.' + field_to_change
-    
+
     update_result = collection.update_one(
         {
             'email' : user['email'],
             'projects.name' : project_name,
         },
         {
-            '$set' : 
+            '$set' :
             {
-                project_subfield_to_change : new_info 
+                project_subfield_to_change : new_info
             }
         })
 
     return update_result
 
 def insert_new_project(project_name):
-    
+
     insert_result = collection.update_one(
         {
             'email' : user['email']
         },
         {
-            '$push' : 
+            '$push' :
             {
-                'projects' : 
+                'projects' :
                 {
-                    'name' : project_name 
-                } 
-            } 
+                    'name' : project_name
+                }
+            }
         })
 
     return insert_result
@@ -82,15 +82,15 @@ def delete_project(project_name):
             'email' : user['email']
         },
         {
-            '$pull': 
-            { 
-                'projects' : 
-                { 
-                    'name' : project_name 
+            '$pull':
+            {
+                'projects' :
+                {
+                    'name' : project_name
                 }
-            } 
+            }
         })
-        
+
     return deletion_result
 
 client = connect_to_mongo('mongodb+srv://MongoBongo:BongoBongo@djongoconnectiontest.nlqyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')

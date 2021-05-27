@@ -23,11 +23,10 @@ def search_for_user(course_name, email):
 def update_user_info(field_to_change, new_info):
     update_result = collection.update_one(
         {
-            'email' : user['email']
+            'email': user['email']
         },
         {
-            '$set' :
-            {
+            '$set': {
                 field_to_change : new_info
             }
         },
@@ -37,14 +36,14 @@ def update_user_info(field_to_change, new_info):
 #Note: If the field we are updating is not in the document, it will insert the new field for us.
 def update_project_info(project_name, field_to_change, new_info):
     project_subfield_to_change = 'projects.$.' + field_to_change
+
     update_result = collection.update_one(
         {
-            'email' : user['email'],
-            'projects.name' : project_name,
+            'email': user['email'],
+            'projects.name': project_name,
         },
         {
-            '$set' :
-            {
+            '$set': {
                 project_subfield_to_change : new_info
             }
         })
@@ -53,14 +52,12 @@ def update_project_info(project_name, field_to_change, new_info):
 def insert_new_project(project_name):
     insert_result = collection.update_one(
         {
-            'email' : user['email']
+            'email': user['email']
         },
         {
-            '$push' :
-            {
-                'projects' :
-                {
-                    'name' : project_name
+            '$push': {
+                'projects': {
+                    'name': project_name
                 }
             }
         })
@@ -69,14 +66,12 @@ def insert_new_project(project_name):
 def delete_project(project_name):
     deletion_result = collection.update_one(
         {
-            'email' : user['email']
+            'email': user['email']
         },
         {
-            '$pull':
-            {
-                'projects' :
-                {
-                    'name' : project_name
+            '$pull': {
+                'projects': {
+                    'name': project_name
                 }
             }
         })
